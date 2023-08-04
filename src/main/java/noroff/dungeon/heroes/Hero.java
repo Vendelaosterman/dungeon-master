@@ -1,12 +1,13 @@
 package noroff.dungeon.heroes;
 import noroff.dungeon.items.Slot;
+import noroff.dungeon.items.armor.Armor;
+import noroff.dungeon.items.armor.ArmorType;
 import noroff.dungeon.util.HeroAttribute;
 import noroff.dungeon.items.Item;
 import noroff.dungeon.items.weapon.Weapon;
 import noroff.dungeon.items.weapon.WeaponType;
 import noroff.dungeon.exceptions.InvalidWeaponException;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,20 +17,14 @@ public abstract class Hero {
     public String name;
     protected int level = 1;
     protected HeroAttribute levelAttributes;
-    //Equipment equipment;
     protected List<WeaponType> validWeaponTypes;
-    protected List<String> validArmorTypes;
+    protected List<ArmorType> validArmorTypes;
     protected HeroAttribute attribute;
     private Map<Slot, Item> equipment;
 
     public Hero(String name){
         this.name = name;
         initializeEquipment();
-
-        //this.attribute = attributes;
-        //this.equipment = new Equipment();
-        //this.validWeaponTypes = new ArrayList<>();
-        //this.validArmorTypes = new ArrayList<>();
     }
 
     private void initializeEquipment() {
@@ -45,14 +40,27 @@ public abstract class Hero {
         level++;
     }
 
-    public void equip(Weapon weapon){
+    public void equip(Item item){
 
-        if(weapon.requiredLevel() > this.level){
-            throw new InvalidWeaponException("Hero level is too low to equip this item");
-        }else if(!this.validWeaponTypes.contains(weapon.getWeaponType())){
-             throw new InvalidWeaponException("Wrong weapon type");
-        }  
-        equipment.put(weapon.getSlot(), weapon);
+        if(item instanceof Weapon){
+            Weapon weapon = (Weapon) item;
+            if (!this.validWeaponTypes.contains(weapon.getWeaponType())) {
+                throw new InvalidWeaponException("Wrong weapon type");
+            }else if(item.requiredLevel() > this.level){
+                throw new InvalidWeaponException("Hero level is too low to equip this item");
+            }
+        }
+
+        if(item instanceof Armor){
+            Armor armor = (Armor) item;
+            if (!this.validArmorTypes.contains(armor.getWeaponType())) {
+                throw new InvalidWeaponException("Wrong weapon type");
+            }else if(item.requiredLevel() > this.level){
+                throw new InvalidWeaponException("Hero level is too low to equip this item");
+            }
+        }
+
+        equipment.put(item.getSlot(), item);
     }
 
     public void damage(){
