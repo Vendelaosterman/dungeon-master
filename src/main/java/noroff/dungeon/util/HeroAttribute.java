@@ -16,8 +16,6 @@ public class HeroAttribute {
         this.strength += strengthGain;
         this.dexterity += dexterityGain;
         this.intelligence += intelligenceGain;
-
-        System.out.println(this.strength);
     }
 
     public int getStrength() {

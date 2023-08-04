@@ -4,6 +4,7 @@ import java.util.List;
 
 import noroff.dungeon.heroes.Hero;
 import noroff.dungeon.items.weapon.WeaponType;
+import noroff.dungeon.items.armor.ArmorType;
 import noroff.dungeon.util.HeroAttribute;
 
 public class Wizard extends Hero {
@@ -12,6 +13,7 @@ public class Wizard extends Hero {
         super(name);
         levelAttributes = new HeroAttribute(1, 1, 8);
         validWeaponTypes = Arrays.asList(WeaponType.STAFFS, WeaponType.WANDS);
+        validArmorTypes = Arrays.asList(ArmorType.CLOTH);
     }
 
     public static void main(String[] args){
