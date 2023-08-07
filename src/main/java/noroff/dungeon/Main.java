@@ -15,12 +15,14 @@ public class Main {
         //Weapon staff = new Weapon("staff", WeaponType.STAFFS, 0, 5);
         HeroAttribute newAtt = new HeroAttribute(5, 4, 3);
         Armor cloth = new Armor("cloth", ArmorType.CLOTH, 0, Slot.BODY, newAtt);
+        Weapon staff = new Weapon("staff", WeaponType.STAFFS, 0, 5);
         //Weapon wand = new Weapon("wand", WeaponType.WANDS, 0);
         //wiz.levelUp();
 
         wiz.display();
  
         wiz.equip(cloth);
+        wiz.equip(staff);
         //wiz.equip(wand);
         //wiz.levelUp();
         wiz.display();

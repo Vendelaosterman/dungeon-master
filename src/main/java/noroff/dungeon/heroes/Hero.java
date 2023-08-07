@@ -8,6 +8,10 @@ import noroff.dungeon.items.weapon.Weapon;
 import noroff.dungeon.items.weapon.WeaponType;
 import noroff.dungeon.exceptions.InvalidArmorException;
 import noroff.dungeon.exceptions.InvalidWeaponException;
+import noroff.dungeon.heroes.types.Archer;
+import noroff.dungeon.heroes.types.Barbarian;
+import noroff.dungeon.heroes.types.Swashbuckler;
+import noroff.dungeon.heroes.types.Wizard;
 
 import java.util.HashMap;
 import java.util.List;
@@ -64,10 +68,6 @@ public abstract class Hero {
         equipment.put(item.getSlot(), item);
     }
 
-    public void damage(){
-        
-    }
-
     public HeroAttribute totalAttributes(){
         int totalStrength = levelAttributes.getStrength();
         int totalDexterity = levelAttributes.getDexterity();
@@ -83,7 +83,30 @@ public abstract class Hero {
             }
         }
     
-        return new HeroAttribute(totalStrength, totalDexterity, totalIntelligence);//totalStrength + totalDexterity + totalIntelligence;
+        return new HeroAttribute(totalStrength, totalDexterity, totalIntelligence);
+    }
+
+    public double damage(){
+        double weaponDamage = 0.0;
+        double damagingAttribute = 0.0;
+
+        Item equippedWeapon = equipment.get(Slot.WEAPON);
+        if (equippedWeapon instanceof Weapon) {
+            Weapon weapon = (Weapon) equippedWeapon;
+            weaponDamage = weapon.getWeaponDamage();
+        }
+
+        HeroAttribute attributes = totalAttributes();
+        if (this instanceof Barbarian) {
+            damagingAttribute = attributes.getStrength();
+        } else if (this instanceof Wizard) {
+            damagingAttribute = attributes.getIntelligence();
+        } else if (this instanceof Archer || this instanceof Swashbuckler) {
+            damagingAttribute = attributes.getDexterity();
+        }
+
+        double totalDamage = weaponDamage * (1 + damagingAttribute / 100);
+        return totalDamage;
     }
 
     public void display(){
@@ -99,6 +122,7 @@ public abstract class Hero {
         System.out.println("Strength: " + totalAttributes().getStrength());
         System.out.println("Dexterity: " + totalAttributes().getDexterity());
         System.out.println("Intelligence: " + totalAttributes().getIntelligence());
+        System.out.println("Damage: " + damage());
     }
 
      /*public static void main(String[] args) throws Exception {
