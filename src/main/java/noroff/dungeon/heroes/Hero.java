@@ -6,6 +6,7 @@ import noroff.dungeon.util.HeroAttribute;
 import noroff.dungeon.items.Item;
 import noroff.dungeon.items.weapon.Weapon;
 import noroff.dungeon.items.weapon.WeaponType;
+import noroff.dungeon.exceptions.InvalidArmorException;
 import noroff.dungeon.exceptions.InvalidWeaponException;
 
 import java.util.HashMap;
@@ -54,9 +55,9 @@ public abstract class Hero {
         if(item instanceof Armor){
             Armor armor = (Armor) item;
             if (!this.validArmorTypes.contains(armor.getWeaponType())) {
-                throw new InvalidWeaponException("Wrong weapon type");
+                throw new InvalidArmorException("Wrong weapon type");
             }else if(item.requiredLevel() > this.level){
-                throw new InvalidWeaponException("Hero level is too low to equip this item");
+                throw new InvalidArmorException("Hero level is too low to equip this item");
             }
         }
 
@@ -64,20 +65,40 @@ public abstract class Hero {
     }
 
     public void damage(){
-
+        
     }
 
-    public void totalAttributes(){
-
+    public HeroAttribute totalAttributes(){
+        int totalStrength = levelAttributes.getStrength();
+        int totalDexterity = levelAttributes.getDexterity();
+        int totalIntelligence = levelAttributes.getIntelligence();
+    
+        for (Item item : equipment.values()) {
+            if (item instanceof Armor) {
+                Armor armor = (Armor) item;
+                HeroAttribute armorAttributes = armor.getArmorAttributes();
+                totalStrength += armorAttributes.getStrength();
+                totalDexterity += armorAttributes.getDexterity();
+                totalIntelligence += armorAttributes.getIntelligence();
+            }
+        }
+    
+        return new HeroAttribute(totalStrength, totalDexterity, totalIntelligence);//totalStrength + totalDexterity + totalIntelligence;
     }
 
     public void display(){
         System.out.println("Name: " + this.name);
+        System.out.println("Class: " + this.getClass().getSimpleName());
         System.out.println("Level: " + this.level);
-        System.out.println("Strength: " + levelAttributes.getStrength());
-        System.out.println("Dexterity: " + levelAttributes.getDexterity());
-        System.out.println("Intelligence: " + levelAttributes.getIntelligence());
+        /*System.out.println("Total strength: " + levelAttributes.getStrength());
+        System.out.println("Total dexterity: " + levelAttributes.getDexterity());
+        System.out.println("Total intelligence: " + levelAttributes.getIntelligence());*/
         System.out.println("Equipments: " + equipment);
+        //System.out.println("Total attributes: " + totalAttributes());
+        System.out.println("Total attributes: ");
+        System.out.println("Strength: " + totalAttributes().getStrength());
+        System.out.println("Dexterity: " + totalAttributes().getDexterity());
+        System.out.println("Intelligence: " + totalAttributes().getIntelligence());
     }
 
      /*public static void main(String[] args) throws Exception {
