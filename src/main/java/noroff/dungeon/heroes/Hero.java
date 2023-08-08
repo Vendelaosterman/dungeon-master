@@ -20,7 +20,7 @@ import java.util.Map;
 public abstract class Hero {
 
     public String name;
-    protected int level = 1;
+    public int level = 1;
     protected HeroAttribute levelAttributes;
     protected List<WeaponType> validWeaponTypes;
     protected List<ArmorType> validArmorTypes;
@@ -89,8 +89,10 @@ public abstract class Hero {
     public double damage(){
         double weaponDamage = 0.0;
         double damagingAttribute = 0.0;
+        double totalDamage;
 
         Item equippedWeapon = equipment.get(Slot.WEAPON);
+        //System.out.println("eqipee: " + equippedWeapon);
         if (equippedWeapon instanceof Weapon) {
             Weapon weapon = (Weapon) equippedWeapon;
             weaponDamage = weapon.getWeaponDamage();
@@ -105,7 +107,13 @@ public abstract class Hero {
             damagingAttribute = attributes.getDexterity();
         }
 
-        double totalDamage = weaponDamage * (1 + damagingAttribute / 100);
+        if(equippedWeapon == null){
+           totalDamage = 1;
+        }else{
+           totalDamage = weaponDamage * (1 + damagingAttribute / 100);
+        }
+
+
         return totalDamage;
     }
 
