@@ -11,14 +11,17 @@ public abstract class Item {
         this.slot = slot;
     }
 
+    //return name
     public String getName(){
         return name;
     }
 
+    //return slot
     public Slot getSlot(){
         return slot;
     }
 
+    //return required level 
     public int requiredLevel(){
         return requiredLevel;
     }

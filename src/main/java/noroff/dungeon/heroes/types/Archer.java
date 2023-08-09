@@ -9,9 +9,10 @@ import java.util.Arrays;
 
 public class Archer extends Hero {
 
+    // Constructor for creating an Archer hero with specified name
     public Archer(String name){
         super(name);
-        levelAttributes = new HeroAttribute(1, 7, 1);
+        levelAttributes = new HeroAttribute(1, 7, 1); // Set initial attributes
         validWeaponTypes = Arrays.asList(WeaponType.BOWS);
         validArmorTypes = Arrays.asList(ArmorType.LEATHER, ArmorType.MAIL);
     }
@@ -20,6 +21,7 @@ public class Archer extends Hero {
 
     }
 
+    // Override the levelUp() method to customize attribute increase on level up
     @Override
     public void levelUp(){
         this.level++;

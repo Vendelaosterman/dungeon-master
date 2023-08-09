@@ -9,9 +9,11 @@ import noroff.dungeon.util.HeroAttribute;
 
 public class Swashbuckler extends Hero {
 
+
+    // Constructor for creating an Archer hero with specified name
     public Swashbuckler(String name){
         super(name);
-        levelAttributes = new HeroAttribute(2, 6, 1);
+        levelAttributes = new HeroAttribute(2, 6, 1); // Set initial attributes
         validWeaponTypes = Arrays.asList(WeaponType.DAGGERS, WeaponType.SWORDS);
         validArmorTypes = Arrays.asList(ArmorType.LEATHER, ArmorType.MAIL);
     }
@@ -20,6 +22,7 @@ public class Swashbuckler extends Hero {
 
     }
 
+    // Override the levelUp() method to customize attribute increase on level up
     @Override
     public void levelUp(){
         this.level++;

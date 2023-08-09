@@ -8,9 +8,10 @@ import noroff.dungeon.util.HeroAttribute;
 
 public class Wizard extends Hero {
 
+    // Constructor for creating an Archer hero with specified name
     public Wizard(String name){
         super(name);
-        levelAttributes = new HeroAttribute(1, 1, 8);
+        levelAttributes = new HeroAttribute(1, 1, 8); // Set initial attributes
         validWeaponTypes = Arrays.asList(WeaponType.STAFFS, WeaponType.WANDS);
         validArmorTypes = Arrays.asList(ArmorType.CLOTH);
     }
@@ -19,6 +20,7 @@ public class Wizard extends Hero {
 
     }
 
+    // Override the levelUp() method to customize attribute increase on level up
     @Override
     public void levelUp(){
         super.levelUp();

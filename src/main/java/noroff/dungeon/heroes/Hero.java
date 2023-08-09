@@ -19,6 +19,8 @@ import java.util.Map;
 
 public abstract class Hero {
 
+
+    // Attributes shared among all hero subclasses
     public String name;
     public int level = 1;
     protected HeroAttribute levelAttributes;
@@ -27,11 +29,13 @@ public abstract class Hero {
     protected HeroAttribute attribute;
     private Map<Slot, Item> equipment;
 
+    // Constructor to create a hero with a given name
     public Hero(String name){
         this.name = name;
         initializeEquipment();
     }
 
+    // Initializes the equipment slots with null values
     private void initializeEquipment() {
         equipment = new HashMap<>();
         equipment.put(Slot.HEAD, null);
@@ -45,8 +49,10 @@ public abstract class Hero {
         level++;
     }
 
+    // Equips an item to the hero's equipment slots
     public void equip(Item item){
 
+        // Handling weapon equipping
         if(item instanceof Weapon){
             Weapon weapon = (Weapon) item;
             if (!this.validWeaponTypes.contains(weapon.getWeaponType())) {
@@ -56,6 +62,7 @@ public abstract class Hero {
             }
         }
 
+        // Handling armor equipping
         if(item instanceof Armor){
             Armor armor = (Armor) item;
             if (!this.validArmorTypes.contains(armor.getArmorType())) {
@@ -68,7 +75,9 @@ public abstract class Hero {
         equipment.put(item.getSlot(), item);
     }
 
+    // Calculates the total attributes of the hero's equipment
     public HeroAttribute totalAttributes(){
+        // Init with base values
         int totalStrength = levelAttributes.getStrength();
         int totalDexterity = levelAttributes.getDexterity();
         int totalIntelligence = levelAttributes.getIntelligence();
@@ -83,9 +92,11 @@ public abstract class Hero {
             }
         }
     
+        // Create a new HeroAttribute instance with the calculated values
         return new HeroAttribute(totalStrength, totalDexterity, totalIntelligence);
     }
 
+    // Calculates the hero's damage based on equipped weapon and attributes
     public double damage(){
         double weaponDamage = 0.0;
         double damagingAttribute = 0.0;
@@ -98,6 +109,7 @@ public abstract class Hero {
             weaponDamage = weapon.getWeaponDamage();
         }
 
+        // Determine damaging attribute based on hero class
         HeroAttribute attributes = totalAttributes();
         if (this instanceof Barbarian) {
             damagingAttribute = attributes.getStrength();
@@ -107,6 +119,7 @@ public abstract class Hero {
             damagingAttribute = attributes.getDexterity();
         }
 
+        // Calculate total damage considering equipped weapon and attributes
         if(equippedWeapon == null){
            totalDamage = 1;
         }else{
@@ -117,10 +130,12 @@ public abstract class Hero {
         return totalDamage;
     }
 
+    // Get the item equipped in a specific slot
     public Item getEquippedWeapon(Slot slot) {
         return equipment.get(slot);
     }
 
+    // Display the hero's information
     public void display(){
         System.out.println("Name: " + this.name);
         System.out.println("Class: " + this.getClass().getSimpleName());
