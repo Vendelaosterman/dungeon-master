@@ -7,7 +7,6 @@ import org.junit.Test;
 import noroff.dungeon.items.Slot;
 import noroff.dungeon.items.armor.Armor;
 import noroff.dungeon.items.armor.ArmorType;
-import noroff.dungeon.items.weapon.WeaponType;
 import noroff.dungeon.util.HeroAttribute;
 
 public class ArmorTest {

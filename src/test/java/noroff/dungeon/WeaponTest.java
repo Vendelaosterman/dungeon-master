@@ -1,8 +1,6 @@
 package noroff.dungeon;
 import org.junit.Test;
 
-import noroff.dungeon.exceptions.InvalidWeaponException;
-import noroff.dungeon.heroes.types.Wizard;
 import noroff.dungeon.items.Slot;
 import noroff.dungeon.items.weapon.Weapon;
 import noroff.dungeon.items.weapon.WeaponType;
