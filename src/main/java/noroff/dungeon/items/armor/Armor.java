@@ -1,9 +1,6 @@
 package noroff.dungeon.items.armor;
-
-import noroff.dungeon.heroes.Hero;
 import noroff.dungeon.items.Item;
 import noroff.dungeon.items.Slot;
-//import noroff.dungeon.items.armor.ArmorType;
 import noroff.dungeon.util.HeroAttribute;
 
 public class Armor extends Item {
@@ -19,7 +16,7 @@ public class Armor extends Item {
         this.ArmorAttribute = ArmorAttribute;
     }
 
-    public ArmorType getWeaponType(){
+    public ArmorType getArmorType(){
         return armorType;
     }
 

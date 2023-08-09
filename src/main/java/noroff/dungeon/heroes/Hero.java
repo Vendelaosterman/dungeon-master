@@ -58,7 +58,7 @@ public abstract class Hero {
 
         if(item instanceof Armor){
             Armor armor = (Armor) item;
-            if (!this.validArmorTypes.contains(armor.getWeaponType())) {
+            if (!this.validArmorTypes.contains(armor.getArmorType())) {
                 throw new InvalidArmorException("Wrong weapon type");
             }else if(item.requiredLevel() > this.level){
                 throw new InvalidArmorException("Hero level is too low to equip this item");
@@ -92,7 +92,7 @@ public abstract class Hero {
         double totalDamage;
 
         Item equippedWeapon = equipment.get(Slot.WEAPON);
-        //System.out.println("eqipee: " + equippedWeapon);
+   
         if (equippedWeapon instanceof Weapon) {
             Weapon weapon = (Weapon) equippedWeapon;
             weaponDamage = weapon.getWeaponDamage();
@@ -117,24 +117,20 @@ public abstract class Hero {
         return totalDamage;
     }
 
+    public Item getEquippedWeapon(Slot slot) {
+        return equipment.get(slot);
+    }
+
     public void display(){
         System.out.println("Name: " + this.name);
         System.out.println("Class: " + this.getClass().getSimpleName());
         System.out.println("Level: " + this.level);
-        /*System.out.println("Total strength: " + levelAttributes.getStrength());
-        System.out.println("Total dexterity: " + levelAttributes.getDexterity());
-        System.out.println("Total intelligence: " + levelAttributes.getIntelligence());*/
         System.out.println("Equipments: " + equipment);
-        //System.out.println("Total attributes: " + totalAttributes());
         System.out.println("Total attributes: ");
         System.out.println("Strength: " + totalAttributes().getStrength());
         System.out.println("Dexterity: " + totalAttributes().getDexterity());
         System.out.println("Intelligence: " + totalAttributes().getIntelligence());
         System.out.println("Damage: " + damage());
     }
-
-     /*public static void main(String[] args) throws Exception {
-        //System.out.println("Hello, World!");
-    }*/
 }
 

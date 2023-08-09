@@ -1,6 +1,5 @@
 package noroff.dungeon.heroes.types;
 import java.util.Arrays;
-import java.util.List;
 
 import noroff.dungeon.heroes.Hero;
 import noroff.dungeon.items.weapon.WeaponType;
