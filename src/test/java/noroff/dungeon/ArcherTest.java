@@ -20,45 +20,41 @@ import noroff.dungeon.items.armor.ArmorType;
 public class ArcherTest 
 
 {
-    Archer arch = new Archer("Arthur");
-    Weapon validWeaponInvalidLevel = new Weapon("staff", WeaponType.BOWS, 5, 22);
-    Weapon validLevelInvalidWeapon = new Weapon("staff", WeaponType.DAGGERS, 0, 22);
-
-    HeroAttribute armorAtt = new HeroAttribute(5, 4, 3);
-    Armor validArmorInvalidLevel = new Armor("mail", ArmorType.LEATHER, 5, Slot.BODY, armorAtt);
-    Armor validLevelInvalidAmor = new Armor("mail", ArmorType.CLOTH, 0, Slot.BODY, armorAtt);
-
-
     /**
      * Testing correct name, level and attributes for Archer
      */
 
     @Test
     public void test_correct_name(){
+        Archer arch = new Archer("Arthur");
         String expectedName = "Arthur";
         assertEquals(expectedName, arch.name);
     }
 
     @Test
     public void test_correct_level(){
+        Archer arch = new Archer("Arthur");
         int expectedLevel = 1;
         assertEquals(expectedLevel, arch.level);
     }
 
     @Test
     public void test_correct_init_strength(){
+        Archer arch = new Archer("Arthur");
         int expectedStrength = 1;
         assertEquals(expectedStrength, arch.totalAttributes().getStrength());
     }
 
     @Test
     public void test_correct_init_dexterity(){
+        Archer arch = new Archer("Arthur");
         int expectedDexterity = 7;
         assertEquals(expectedDexterity, arch.totalAttributes().getDexterity());
     }
 
     @Test
     public void test_correct_init_intelligence(){
+        Archer arch = new Archer("Arthur");
         int expectedIntelligence = 1;
         assertEquals(expectedIntelligence, arch.totalAttributes().getIntelligence());
     }
@@ -69,6 +65,7 @@ public class ArcherTest
 
      @Test
     public void test_level_increase(){
+        Archer arch = new Archer("Arthur");
         int expectedLevel = 2;
         arch.levelUp();
         assertEquals(expectedLevel, arch.level);
@@ -80,6 +77,7 @@ public class ArcherTest
 
      @Test
     public void test_correct_levelUp_strength(){
+        Archer arch = new Archer("Arthur");
         arch.levelUp();
         int expectedStrength = 2;
         assertEquals(expectedStrength, arch.totalAttributes().getStrength());
@@ -87,6 +85,7 @@ public class ArcherTest
 
     @Test
     public void test_correct_levelUp_dexterity(){
+        Archer arch = new Archer("Arthur");
         arch.levelUp();
         int expectedDexterity = 12;
         assertEquals(expectedDexterity, arch.totalAttributes().getDexterity());
@@ -94,6 +93,7 @@ public class ArcherTest
 
     @Test
     public void test_correct_levelUp_intelligence(){
+        Archer arch = new Archer("Arthur");
         arch.levelUp();
         int expectedIntelligence = 2;
         assertEquals(expectedIntelligence, arch.totalAttributes().getIntelligence());
@@ -105,6 +105,8 @@ public class ArcherTest
 
      @Test(expected = InvalidWeaponException.class) 
      public void invalid_level_equip_weapon(){
+        Weapon validWeaponInvalidLevel = new Weapon("staff", WeaponType.BOWS, 5, 22);
+        Archer arch = new Archer("Arthur");
          arch.equip(validWeaponInvalidLevel);
      }
  
@@ -114,6 +116,8 @@ public class ArcherTest
  
      @Test(expected = InvalidWeaponException.class) 
      public void invalid_weapon_equip_weapon(){
+        Weapon validLevelInvalidWeapon = new Weapon("staff", WeaponType.DAGGERS, 0, 22);
+        Archer arch = new Archer("Arthur");
          arch.equip(validLevelInvalidWeapon);
      }
 
@@ -123,6 +127,9 @@ public class ArcherTest
 
     @Test(expected = InvalidArmorException.class) 
     public void invalid_level_equip_armor(){
+        HeroAttribute armorAtt = new HeroAttribute(5, 4, 3);
+        Armor validArmorInvalidLevel = new Armor("mail", ArmorType.LEATHER, 5, Slot.BODY, armorAtt);
+        Archer arch = new Archer("Arthur");
         arch.equip(validArmorInvalidLevel);
     }
 
@@ -132,6 +139,9 @@ public class ArcherTest
 
     @Test(expected = InvalidArmorException.class) 
     public void invalid_armor_equip_armor(){
+        HeroAttribute armorAtt = new HeroAttribute(5, 4, 3);
+        Armor validLevelInvalidAmor = new Armor("mail", ArmorType.CLOTH, 0, Slot.BODY, armorAtt);
+        Archer arch = new Archer("Arthur");
         arch.equip(validLevelInvalidAmor);
     }
 
@@ -141,6 +151,7 @@ public class ArcherTest
 
     @Test
     public void valid_weaponType_equip(){
+        Archer arch = new Archer("Arthur");
         Weapon expectedWeapon = new Weapon("staff", WeaponType.BOWS, 0, 22);
         arch.equip(expectedWeapon);
         assertEquals(expectedWeapon, arch.getEquippedWeapon(Slot.WEAPON));
@@ -152,6 +163,8 @@ public class ArcherTest
 
      @Test
     public void valid_armorType_equip(){
+        Archer arch = new Archer("Arthur");
+        HeroAttribute armorAtt = new HeroAttribute(5, 4, 3);
         Armor expectedArmor = new Armor("mail", ArmorType.LEATHER, 0, Slot.BODY, armorAtt);
         arch.equip(expectedArmor);
         assertEquals(expectedArmor, arch.getEquippedWeapon(Slot.BODY));
@@ -163,6 +176,8 @@ public class ArcherTest
 
     @Test
     public void total_strength_calculation_one_armor(){
+        HeroAttribute armorAtt = new HeroAttribute(5, 4, 3);
+        Archer arch = new Archer("Arthur");
         Armor armor = new Armor("mail", ArmorType.LEATHER, 0, Slot.BODY, armorAtt);
         int expectedStrength = 1 + 5;
         arch.equip(armor);
@@ -171,6 +186,8 @@ public class ArcherTest
 
     @Test
     public void total_dexterity_calculation_one_armor(){
+        HeroAttribute armorAtt = new HeroAttribute(5, 4, 3);
+        Archer arch = new Archer("Arthur");
         Armor armor = new Armor("mail", ArmorType.LEATHER, 0, Slot.BODY, armorAtt);
         int expectedDexterity = 7 + 4;
         arch.equip(armor);
@@ -179,6 +196,8 @@ public class ArcherTest
 
     @Test
     public void total_intelligence_calculation_one_armor(){
+        HeroAttribute armorAtt = new HeroAttribute(5, 4, 3);
+        Archer arch = new Archer("Arthur");
         Armor armor = new Armor("mail", ArmorType.LEATHER, 0, Slot.BODY, armorAtt);
         int expectedIntelligence = 1 + 3;
         arch.equip(armor);
@@ -191,6 +210,8 @@ public class ArcherTest
 
      @Test
     public void total_strength_calculation_two_armor(){
+        HeroAttribute armorAtt = new HeroAttribute(5, 4, 3);
+        Archer arch = new Archer("Arthur");
         Armor armor1 = new Armor("mail", ArmorType.LEATHER, 0, Slot.BODY, armorAtt);
         Armor armor2 = new Armor("mail", ArmorType.LEATHER, 0, Slot.HEAD, armorAtt);
         int expectedStrength = 1 + 5 + 5;
@@ -201,6 +222,8 @@ public class ArcherTest
 
      @Test
     public void total_dexterity_calculation_two_armor(){
+        HeroAttribute armorAtt = new HeroAttribute(5, 4, 3);
+        Archer arch = new Archer("Arthur");
         Armor armor1 = new Armor("mail", ArmorType.LEATHER, 0, Slot.BODY, armorAtt);
         Armor armor2 = new Armor("mail", ArmorType.LEATHER, 0, Slot.HEAD, armorAtt);
         int expectedDexterity = 7 + 4 + 4;
@@ -211,6 +234,8 @@ public class ArcherTest
 
          @Test
     public void total_intelligence_calculation_two_armor(){
+        HeroAttribute armorAtt = new HeroAttribute(5, 4, 3);
+        Archer arch = new Archer("Arthur");
         Armor armor1 = new Armor("mail", ArmorType.LEATHER, 0, Slot.BODY, armorAtt);
         Armor armor2 = new Armor("mail", ArmorType.LEATHER, 0, Slot.HEAD, armorAtt);
         int expectedIntelligence = 1 + 3 + 3;
@@ -225,6 +250,8 @@ public class ArcherTest
 
      @Test
     public void total_strength_calculation_replaced_armor(){
+        HeroAttribute armorAtt = new HeroAttribute(5, 4, 3);
+        Archer arch = new Archer("Arthur");
         Armor armor1 = new Armor("mail", ArmorType.LEATHER, 0, Slot.BODY, armorAtt);
         Armor armor2 = new Armor("mail", ArmorType.LEATHER, 0, Slot.BODY, armorAtt);
         int expectedStrength = 1 + 5;
@@ -235,6 +262,8 @@ public class ArcherTest
 
      @Test
     public void total_dexterity_calculation_replaced_armor(){
+        HeroAttribute armorAtt = new HeroAttribute(5, 4, 3);
+        Archer arch = new Archer("Arthur");
         Armor armor1 = new Armor("mail", ArmorType.LEATHER, 0, Slot.BODY, armorAtt);
         Armor armor2 = new Armor("mail", ArmorType.LEATHER, 0, Slot.BODY, armorAtt);
         int expectedDexterity = 7 + 4;
@@ -245,6 +274,8 @@ public class ArcherTest
 
      @Test
     public void total_intelligence_calculation_replaced_armor(){
+        HeroAttribute armorAtt = new HeroAttribute(5, 4, 3);
+        Archer arch = new Archer("Arthur");
         Armor armor1 = new Armor("mail", ArmorType.LEATHER, 0, Slot.BODY, armorAtt);
         Armor armor2 = new Armor("mail", ArmorType.LEATHER, 0, Slot.BODY, armorAtt);
         int expectedIntelligence = 1 + 3;
@@ -259,6 +290,7 @@ public class ArcherTest
 
       @Test
     public void calculating_correct_hero_damage_no_equipments(){
+        Archer arch = new Archer("Arthur");
         double expectedDamage = 1;
         double delta = 0.0001;
         assertEquals(expectedDamage, arch.damage(), delta);
@@ -266,6 +298,7 @@ public class ArcherTest
 
       @Test
     public void calculating_correct_hero_damage_weapon_equipped(){
+        Archer arch = new Archer("Arthur");
         Weapon weapon = new Weapon("staff", WeaponType.BOWS, 0, 22);
         //totalDamage = weaponDamage * (1 + damagingAttribute / 100);
         double expectedDamage = 23.54;
@@ -276,6 +309,7 @@ public class ArcherTest
 
       @Test
     public void calculating_correct_hero_damage_weapon_replaced(){
+        Archer arch = new Archer("Arthur");
         Weapon weapon1 = new Weapon("staff", WeaponType.BOWS, 0, 22);
         Weapon weapon2 = new Weapon("staff", WeaponType.BOWS, 0, 35);
         double expectedDamage = 37.45;
@@ -287,6 +321,8 @@ public class ArcherTest
 
       @Test
     public void calculating_correct_hero_damage_weapon_armor_equipped(){
+        HeroAttribute armorAtt = new HeroAttribute(5, 4, 3);
+        Archer arch = new Archer("Arthur");
         Weapon weapon = new Weapon("staff", WeaponType.BOWS, 0, 22);
         Armor armor = new Armor("mail", ArmorType.LEATHER, 0, Slot.BODY, armorAtt);
         double expectedDamage = 24.42;

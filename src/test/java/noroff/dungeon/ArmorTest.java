@@ -12,39 +12,46 @@ import noroff.dungeon.util.HeroAttribute;
 
 public class ArmorTest {
 
-    HeroAttribute armorAtt = new HeroAttribute(5, 4, 3);
-    Armor cloth = new Armor("cloth", ArmorType.CLOTH, 10, Slot.BODY, armorAtt);
-
          /**
      * Testing name, required level, slot, armor type and armor attributes for Armor creation 
      */
 
     @Test
     public void test_correct_name_armor(){
+        HeroAttribute armorAtt = new HeroAttribute(5, 4, 3);
+        Armor cloth = new Armor("cloth", ArmorType.CLOTH, 10, Slot.BODY, armorAtt);
         String expectedName = "cloth";
         assertEquals(expectedName, cloth.getName());
     }
 
     @Test
     public void test_correct_requiredLevel_armor() {
+        HeroAttribute armorAtt = new HeroAttribute(5, 4, 3);
+        Armor cloth = new Armor("cloth", ArmorType.CLOTH, 10, Slot.BODY, armorAtt);
         int expectedRequiredLevel = 10;
         assertEquals(expectedRequiredLevel, cloth.getRequiredLevel());
     }
 
     @Test
     public void test_correct_slot_armor() {
+        HeroAttribute armorAtt = new HeroAttribute(5, 4, 3);
+        Armor cloth = new Armor("cloth", ArmorType.CLOTH, 10, Slot.BODY, armorAtt);
         Slot expectedSlot = Slot.BODY;
         assertEquals(expectedSlot, cloth.getSlot());
     }
 
     @Test
     public void test_correct_ArmorType_armor() {
+        HeroAttribute armorAtt = new HeroAttribute(5, 4, 3);
+        Armor cloth = new Armor("cloth", ArmorType.CLOTH, 10, Slot.BODY, armorAtt);
         ArmorType expectedArmorType = ArmorType.CLOTH;
         assertEquals(expectedArmorType, cloth.getArmorType());
     }
 
     @Test
     public void test_correct_armorAtt_armor() {
+        HeroAttribute armorAtt = new HeroAttribute(5, 4, 3);
+        Armor cloth = new Armor("cloth", ArmorType.CLOTH, 10, Slot.BODY, armorAtt);
         HeroAttribute expectedArmorAtt = armorAtt;
         assertEquals(expectedArmorAtt, cloth.getArmorAttributes());
     }
